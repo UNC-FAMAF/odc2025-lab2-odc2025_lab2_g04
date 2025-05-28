@@ -12,6 +12,26 @@ main:
  	mov x20, x0	// Guarda la dirección base del framebuffer en x20
 	//---------------- CODE HERE ------------------------------------
 
+    // COLOR_CIELO
+    movz w10, 0x2F, lsl 16
+    movk w10, 0x59A1, lsl 00
+
+    mov x1, 0
+    mov x2, 0
+    mov x3, 640
+    mov x4, 340
+    bl dibujar_rectangulo_relleno
+
+    // COLOR_PASTO
+    movz w10, 0x56, lsl 16
+    movk w10, 0x703b, lsl 00
+
+    mov x1, 0
+    mov x2, 340
+    mov x3, 640
+    mov x4, 480
+    bl dibujar_rectangulo_relleno
+
     // COLOR_EDIFICIO_BASE2 #8b8d81
     movz w10, 0x8b, lsl 16
     movk w10, 0x8d81, lsl 00
@@ -37,18 +57,6 @@ main:
     mov x5, 15
 
     bl dibujar_lineas_repetidasy
-
-
-
-    //color negro para dar forma nomas
-    movz w10, 0x00, lsl 16
-    movk w10, 0x0000, lsl 00
-    mov x1, 60
-    mov x2, 164    
-    mov x3, 39
-    mov x4, 388
-    mov x5, 10
-    bl dibujar_lineas_repetidasx
 
     // COLOR_EDIFICIO_SOMBRA4 (la sombra del pilar que sobresale pero la de que mira para abajo)
     movz w10, 0x60, lsl 16
@@ -123,8 +131,6 @@ main:
     mov x4, 212
     mov x5, 5
     bl dibujar_lineas_repetidasx
-
-
 
     //COLOR_EDIFICIO_SOMBRA5
     movz w10, 0x75, lsl 16
@@ -274,7 +280,7 @@ main:
     mov x5,5
     bl dibujar_lineas_repetidasy
 
-
+    
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
