@@ -270,3 +270,45 @@ done_repeat_x:
     ldp x21, x22, [sp], 16
     ldp x19, x20, [sp], 16
     ret
+// igual que las anteriores en todo excepto que va saltando una linea y pinta y asi seguidamente
+.globl dibujar_lineas_intercaladasx
+dibujar_lineas_intercaladasx:
+    // Preservar registros
+    stp x19, x20, [sp, -16]!
+    stp x21, x22, [sp, -16]!
+    stp x23, x24, [sp, -16]!
+    stp x25, x30, [sp, -16]!
+
+    // Guardar parámetros
+    mov x19, x0      // dirección framebuffer
+    mov x20, x1      // x_inicio original
+    mov x21, x2      // y_inicio original
+    mov x22, x3      // x_fin original
+    mov x23, x4      // y_fin original
+    mov x24, x5      // z (contador)
+
+draw_repeat_loop_xs:
+    cmp x24, 0
+    beq done_repeat_xs   // Si z == 0, termina
+
+    mov x1, x20
+    mov x2, x21
+    mov x3, x22
+    mov x4, x23
+    bl dibujar_linea
+
+    // Mover a la derecha: x1-- y x2--
+    add x20, x20, 2
+    add x22, x22, 2
+
+    // Decrementar contador
+    sub x24, x24, 2
+    b draw_repeat_loop_xs
+
+done_repeat_xs:
+    // Restaurar registros
+    ldp x25, x30, [sp], 16
+    ldp x23, x24, [sp], 16
+    ldp x21, x22, [sp], 16
+    ldp x19, x20, [sp], 16
+    ret
