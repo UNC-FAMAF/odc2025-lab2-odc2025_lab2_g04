@@ -312,3 +312,42 @@ done_repeat_xs:
     ldp x21, x22, [sp], 16
     ldp x19, x20, [sp], 16
     ret
+
+
+/* funcion para dibujar un rectangulo relleno
+Parametros:
+
+x1 = x_inicio
+x2 = y_inicio
+x3 = x_fin
+x4 = y_fin
+*/
+.globl dibujar_rectangulo_relleno
+dibujar_rectangulo_relleno:
+    stp x19, x20, [sp, -16]!
+    stp x21, x22, [sp, -16]!
+    stp x23, x30, [sp, -16]!
+
+    // 2 Guardar parámetros
+    mov x20, x1          // x_inicio
+    mov x21, x2          // y_inicio
+    mov x22, x3          // x_fin
+    mov x23, x4          // y_fin
+
+    mov x2, x21         // y_inicio
+height_rec_loop:
+    mov x1, x20         // x_inicio
+width_rec_loop:
+    bl pintar_pixel
+    add x1, x1, 1
+    cmp x1, x22
+    b.le width_rec_loop
+    add x2, x2, 1
+    cmp x2, x23
+    b.le height_rec_loop
+
+done_rec:
+    ldp x23, x30, [sp], 16
+    ldp x21, x22, [sp], 16
+    ldp x19, x20, [sp], 16
+    ret
