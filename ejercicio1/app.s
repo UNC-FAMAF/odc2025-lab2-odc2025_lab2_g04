@@ -22,6 +22,14 @@ loop1:
 loop0:
 	stur w10,[x0]  // Colorear el pixel N
 	add x0,x0,4	   // Siguiente pixel
+	// set color en w12
+	movz w12, #0xff
+	movk w12, #0xffff, lsl 16
+
+	//set n pixel en x13
+	mov x13, x20
+	add x13, x13, #128
+	stur w12, [x13] // Colorear el pixel x13
 	sub x1,x1,1	   // Decrementar contador X
 	cbnz x1,loop0  // Si no terminó la fila, salto
 	sub x2,x2,1	   // Decrementar contador Y
@@ -45,6 +53,7 @@ loop0:
 	// w11 será 1 si había un 1 en la posición 2 de w10, si no será 0
 	// efectivamente, su valor representará si GPIO 2 está activo
 	lsr w11, w11, 1
+
 
 	//---------------------------------------------------------------
 	// Infinite Loop

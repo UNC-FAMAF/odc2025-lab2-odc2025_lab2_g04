@@ -1,5 +1,5 @@
 # Este Dockerfile define un container con gcc y qemu para poder correr
-FROM debian:buster-slim as build-env
+FROM debian:bookworm-slim AS build-env
 WORKDIR /root/
 
 RUN apt-get update && apt-get -y install \
