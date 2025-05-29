@@ -1,3 +1,12 @@
+.data
+    //array_p0_p1: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
+    //array_p1_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
+    //array_p0_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
+    array_p0_p1: .hword 7, 6, 4, 2
+    array_p1_p2: .hword 4, 5, 6, 6, 7
+    array_p0_p2: .hword 4, 4, 3, 3, 2, 2, 1, 1
+    array_p0_p1_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
+
 .section .text
 
 .equ SCREEN_WIDTH, 640
@@ -12,7 +21,7 @@ pintar_pixel:
     // x0 = dirección base del framebuffer (se preserva)
     // x1 = coordenada x (no necesita preservarse)
     // x2 = coordenada y (no necesita preservarse)
-    // w5 = color (no necesita preservarse)
+    // w10 = color (no necesita preservarse)
     
     MOV X19, SCREEN_WIDTH              // x19 = SCREEN_WIDTH = 640
     MUL X19, X2, X19                   // x19 = y * 640 = y * SCREEN_WIDTH
@@ -324,6 +333,7 @@ x4 = y_fin
 */
 .globl dibujar_rectangulo_relleno
 dibujar_rectangulo_relleno:
+    // Preservar registros
     stp x19, x20, [sp, -16]!
     stp x21, x22, [sp, -16]!
     stp x23, x30, [sp, -16]!
@@ -334,6 +344,7 @@ dibujar_rectangulo_relleno:
     mov x22, x3          // x_fin
     mov x23, x4          // y_fin
 
+    // Funcion
     mov x2, x21         // y_inicio
 height_rec_loop:
     mov x1, x20         // x_inicio
@@ -347,7 +358,128 @@ width_rec_loop:
     b.le height_rec_loop
 
 done_rec:
+    // Restaurar registros
     ldp x23, x30, [sp], 16
+    ldp x21, x22, [sp], 16
+    ldp x19, x20, [sp], 16
+    ret
+
+
+/* funcion para dibujar un triangulo
+
+https://www.gabrielgambetta.com/computer-graphics-from-scratch/07-filled-triangles.html
+
+Parametros:
+
+x1 = p0.x
+x2 = p0.y
+x3 = p1.x
+x4 = p1.y
+x5 = p2.x
+x6 = p2.y
+*/
+.globl dibujar_triangulo
+dibujar_triangulo:
+    // Preservar registros TODO
+    stp x19, x20, [sp, -16]!
+    stp x21, x22, [sp, -16]!
+    stp x23, x24, [sp, -16]!
+    stp x25, x30, [sp, -16]!
+
+    // Guardar parámetros
+    mov x19, x1     // p0.x
+    mov x20, x2     // p0.y
+    mov x21, x3     // p1.x
+    mov x22, x4     // p1.y
+    mov x23, x5     // p2.x
+    mov x24, x6     // p2.y
+
+    // Funcion
+    // get_array_p0_p1
+    // get_array_p1_p2
+    // get_array_p0_p2
+
+    //
+    // Concatenate the short sides
+    //
+    sub x1, x22, x20             // p1.y - 
+    sub x1, x1, 1
+
+    ldr x2, =array_p0_p1        // posicion de memoria de array_p0_p1
+    ldr x3, =array_p0_p1_p2     // posicion de memoria de array_p0_p1_p2
+add_array_p0_p1_loop:
+    ldurh w4, [x2]
+    sturh w4, [x3]
+    add x2, x2, 2
+    add x3, x3, 2
+    subs x1, x1, 1
+    b.gt add_array_p0_p1_loop
+
+    sub x1, x24, x22
+
+    ldr x2, =array_p1_p2        // posicion de memoria de array_p1_p2
+add_array_p1_p2_loop:
+    ldurh w4, [x2]
+    sturh w4, [x3]
+    add x2, x2, 2
+    add x3, x3, 2
+    subs x1, x1, 1
+    b.gt add_array_p1_p2_loop
+
+    //
+    // Determine which is left and which is right
+    //
+    sub x1, x24, x20
+    mov x2, 2
+    udiv x1, x1, x2
+    lsl x1, x1, 2
+
+    ldr x2, =array_p0_p2        // posicion de memoria de array_p0_p1
+    ldr x3, =array_p0_p1_p2     // posicion de memoria de array_p0_p1_p2
+
+    add x2, x2, x1
+    add x3, x3, x1
+
+    ldurh w2, [x2]
+    ldurh w3, [x3]
+
+    cmp x2, x3
+    b.gt side_else
+side_if:
+    ldr x4, =array_p0_p2        // x_left 
+    ldr x5, =array_p0_p1_p2     // x_right 
+    b done_side_if
+side_else:
+    ldr x4, =array_p0_p1_p2     // x_left 
+    ldr x5, =array_p0_p2        // x_right 
+done_side_if:
+
+    //
+    // Draw the horizontal segments
+    //
+    mov x3, x20        // p0.y
+loop_hor_seg_y:
+    sub x6, x3, x20     // y - y0
+    add x7, x5, x6      // &x_right[y - y0]
+    add x6, x4, x6      // &x_left[y - y0]
+    ldurh w6, [x6]      // x_left[y - y0]
+    ldurh w7, [x7]      // x_left[y - y0]
+loop_hor_seg_x:
+    mov x1, x6
+    mov x2, x3
+    bl pintar_pixel
+
+    add x6, x6, 1
+    cmp x6, x7          // x6 - x_right[y - y0]
+    b.lt loop_hor_seg_x
+
+    add x3, x3, 1
+    cmp x3, x24         // x3 - p2.y
+    b.lt loop_hor_seg_y
+
+done_triangulo:
+    ldp x25, x30, [sp], 16
+    ldp x23, x24, [sp], 16
     ldp x21, x22, [sp], 16
     ldp x19, x20, [sp], 16
     ret

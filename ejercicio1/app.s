@@ -271,8 +271,6 @@ main:
     movz w10, 0x60, lsl 16
     movk w10, 0x5E48, lsl 00
 
-
-
     mov x1,351
     mov x2,199
     mov x3,394
@@ -280,7 +278,17 @@ main:
     mov x5,5
     bl dibujar_lineas_repetidasy
 
-    
+    // NEW
+
+    movz w10, 0xff, lsl 16
+
+    mov x1, 4
+    mov x2, 1
+    mov x3, 7
+    mov x4, 5
+    mov x5, 1
+    mov x6, 8
+    bl dibujar_triangulo
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
