@@ -282,12 +282,12 @@ main:
 
     movz w10, 0xff, lsl 16
 
-    mov x1, 4
-    mov x2, 1
+    mov x1, 1
+    mov x2, 8
     mov x3, 7
     mov x4, 5
-    mov x5, 1
-    mov x6, 8
+    mov x5, 4
+    mov x6, 1
     bl dibujar_triangulo
 
 	// Ejemplo de uso de gpios

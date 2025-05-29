@@ -2,9 +2,9 @@
     //array_p0_p1: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
     //array_p1_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
     //array_p0_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
-    array_p0_p1: .hword 7, 6, 4, 2
-    array_p1_p2: .hword 4, 5, 6, 6, 7
-    array_p0_p2: .hword 4, 4, 3, 3, 2, 2, 1, 1
+    array_p0_p1: .hword 2, 4, 6, 7
+    array_p1_p2: .hword 7, 6, 6, 5, 4
+    array_p0_p2: .hword 1, 1, 2, 2, 3, 3, 4, 4
     array_p0_p1_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
 
 .section .text
@@ -402,7 +402,7 @@ dibujar_triangulo:
     //
     // Concatenate the short sides
     //
-    sub x1, x22, x20             // p1.y - 
+    sub x1, x20, x22             // p1.y - p2.y
     sub x1, x1, 1
 
     ldr x2, =array_p0_p1        // posicion de memoria de array_p0_p1
@@ -413,9 +413,9 @@ add_array_p0_p1_loop:
     add x2, x2, 2
     add x3, x3, 2
     subs x1, x1, 1
-    b.gt add_array_p0_p1_loop
+    b.ge add_array_p0_p1_loop
 
-    sub x1, x24, x22
+    sub x1, x22, x24            //  p0.y - p1.y
 
     ldr x2, =array_p1_p2        // posicion de memoria de array_p1_p2
 add_array_p1_p2_loop:
@@ -424,15 +424,15 @@ add_array_p1_p2_loop:
     add x2, x2, 2
     add x3, x3, 2
     subs x1, x1, 1
-    b.gt add_array_p1_p2_loop
+    b.ge add_array_p1_p2_loop
 
     //
     // Determine which is left and which is right
     //
-    sub x1, x24, x20
+    sub x1, x20, x24
     mov x2, 2
     udiv x1, x1, x2
-    lsl x1, x1, 2
+    lsl x1, x1, 1
 
     ldr x2, =array_p0_p2        // posicion de memoria de array_p0_p1
     ldr x3, =array_p0_p1_p2     // posicion de memoria de array_p0_p1_p2
@@ -444,7 +444,7 @@ add_array_p1_p2_loop:
     ldurh w3, [x3]
 
     cmp x2, x3
-    b.gt side_else
+    b.ge side_else
 side_if:
     ldr x4, =array_p0_p2        // x_left 
     ldr x5, =array_p0_p1_p2     // x_right 
@@ -457,16 +457,18 @@ done_side_if:
     //
     // Draw the horizontal segments
     //
-    mov x3, x20        // p0.y
+    mov x3, x24        // p0.y
 loop_hor_seg_y:
-    sub x6, x3, x20     // y - y0
+    sub x6, x3, x24     // y - y0
+    lsl x6, x6, 1       // (y - y0) * 2
     add x7, x5, x6      // &x_right[y - y0]
     add x6, x4, x6      // &x_left[y - y0]
     ldurh w6, [x6]      // x_left[y - y0]
     ldurh w7, [x7]      // x_left[y - y0]
 loop_hor_seg_x:
     mov x1, x6
-    mov x2, x3
+    // mov x2, x3
+    sub x2, x20, x3 // TODO
     bl pintar_pixel
 
     add x6, x6, 1
@@ -474,7 +476,7 @@ loop_hor_seg_x:
     b.lt loop_hor_seg_x
 
     add x3, x3, 1
-    cmp x3, x24         // x3 - p2.y
+    cmp x3, x20         // x3 - p2.y
     b.lt loop_hor_seg_y
 
 done_triangulo:
