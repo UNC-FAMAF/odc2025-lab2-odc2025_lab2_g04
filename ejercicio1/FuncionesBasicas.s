@@ -2,7 +2,84 @@
 
 .equ SCREEN_WIDTH, 640
 .equ SCREEN_HEIGH, 480
+.globl dibujar_elipse
+dibujar_elipse:
+    stp     x19, x20, [sp, -16]!
+    stp     x21, x22, [sp, -16]!
+    stp     x23, x24, [sp, -16]!
+    stp     x25, x26, [sp, -16]!
+    stp     x27, x28, [sp, -16]!
+    stp     x29, x30, [sp, -16]!
 
+    mov     x19, x0
+    mov     x20, x1       // cx
+    mov     x21, x2       // cy
+    mov     x22, x3       // rx
+    mov     x23, x4       // ry
+
+    // rx^2 -> x24, ry^2 -> x25
+    mul     x24, x22, x22
+    mul     x25, x23, x23
+
+    // y loop from cy - ry to cy + ry
+    sub     x26, x21, x23     // y = cy - ry
+    add     x27, x21, x23     // y_end
+
+loop_y:
+    cmp     x26, x27
+    bgt     end_loop_y
+
+    // x loop from cx - rx to cx + rx
+    sub     x28, x20, x22     // x_start
+    add     x29, x20, x22     // x_end
+    mov     x30, x28          // x = x_start
+
+loop_x:
+    cmp     x30, x29
+    bgt     end_loop_x
+
+    sub     x6, x30, x20      // dx = x - cx
+    sub     x7, x26, x21      // dy = y - cy
+
+    mul     x8, x6, x6        // dx^2
+    mul     x8, x8, x25       // dx^2 * ry^2
+
+    mul     x9, x7, x7        // dy^2
+    mul     x9, x9, x24       // dy^2 * rx^2
+
+    add     x13, x8, x9       // lhs = dx^2 * ry^2 + dy^2 * rx^2
+
+    mul     x11, x24, x25     // rhs = rx^2 * ry^2
+
+    cmp     x13, x11
+    bgt     skip_pixel
+
+
+    // Calcular offset: y * 640 + x
+    mov     x5, #640
+    mul     x12, x26, x5
+    add     x12, x12, x30
+    lsl     x12, x12, #2      // *4 bytes por píxel
+    add     x12, x12, x19 
+
+    str     w10, [x12]   // framebuffer[y * 640 + x] = color
+
+skip_pixel:
+    add     x30, x30, #1
+    b       loop_x
+
+end_loop_x:
+    add     x26, x26, #1
+    b       loop_y
+
+end_loop_y:
+    ldp     x29, x30, [sp], 16
+    ldp     x27, x28, [sp], 16
+    ldp     x25, x26, [sp], 16
+    ldp     x23, x24, [sp], 16
+    ldp     x21, x22, [sp], 16
+    ldp     x19, x20, [sp], 16
+    ret
 /* Funcion para Dibujar un pixel*/
 .globl pintar_pixel 
 pintar_pixel:
