@@ -1,10 +1,7 @@
 .data
-    //array_p0_p1: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
-    //array_p1_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
-    //array_p0_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
-    array_p0_p1: .hword 2, 4, 6, 7
-    array_p1_p2: .hword 7, 6, 6, 5, 4
-    array_p0_p2: .hword 1, 1, 2, 2, 3, 3, 4, 4
+    array_p0_p1: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
+    array_p1_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
+    array_p0_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
     array_p0_p1_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
 
 .section .text
@@ -364,6 +361,119 @@ done_rec:
     ldp x19, x20, [sp], 16
     ret
 
+/* funcion para guardar linea
+
+Parametros:
+x0 = dirección base del framebuffer
+x1 = x_inicio
+x2 = y_inicio
+x3 = x_fin
+x4 = y_fin
+x5 = direccion de array 
+*/
+.globl guardar_linea
+guardar_linea:
+    // 1. Preservar registros
+    stp x19, x20, [sp, -16]!
+    stp x21, x22, [sp, -16]!
+    stp x23, x24, [sp, -16]!
+    stp x25, x26, [sp, -16]!
+    stp x27, x28, [sp, -16]!
+    stp x29, x30, [sp, -16]!  // Guardar también LR (x30)
+    
+    // 2. Guardar parámetros en registros preservados
+    mov x19, x0                // Dirección base del framebuffer
+    mov x20, x1                // x0 (x_inicio)
+    mov x21, x2                // y0 (y_inicio)
+    mov x22, x3                // x1 (x_fin)
+    mov x23, x4                // y1 (y_fin)
+    mov x13, x2                // y0 (y_inicio)
+    mov x14, x5                // direccion de array 
+
+//dx = Diferencia absoluta entre las x y dy = Diferencia absoluta entra las y
+
+    // 3. Calcular dx = abs(x1 - x0)
+    sub x6, x22, x20           // dx = x1 - x0
+    cmp x6, 0
+    b.ge dx_positive_2
+    neg x6, x6                 // dx = abs(dx)
+dx_positive_2:             
+    
+    // 4. Calcular dy = abs(y1 - y0)
+    sub x7, x23, x21           // dy = y1 - y0
+    cmp x7, 0
+    b.ge dy_positive_2
+    neg x7, x7                 // dy = abs(dy)
+dy_positive_2:
+    
+    // 5. Determinar en que dirección X se debe mover(sx)
+    mov x24, 1                 // sx = 1 (por defecto a la derecha)
+    cmp x22, x20
+    b.ge sx_done_2
+    mov x24, -1                // sx = -1 si x1 < x0 (a la izquierda)
+sx_done_2:
+    
+    // 6. Determinar en que dirección Y se debe mover (sy)
+    mov x25, 1                 // sy = 1 (por defecto sube)
+    cmp x23, x21
+    b.ge sy_done_2
+    mov x25, -1                // sy = -1 si y1 < y0 (baja)
+sy_done_2:
+    
+    // 7. Inicializar error
+    mov x26, x6                // err = dx
+    sub x26, x26, x7           // err = dx - dy
+    
+    // 8. Bucle principal
+line_loop_2:
+    // Dibujar píxel actual
+    mov x0, x19                // dirección framebuffer
+    mov x1, x20                // x actual
+    mov x2, x21                // y actual
+    bl pintar_pixel
+    // guarga píxel actual
+    mov x1, x20               
+    sub x15, x13, x21
+    lsl x15, x15, 1
+    add x15, x14, x15
+    sturh w1, [x15]
+    
+    // Verificar si ya se llego
+    cmp x20, x22               // x0 == x1?
+    b.ne not_end_2
+    cmp x21, x23               // y0 == y1?
+    b.eq line_end_2
+    
+not_end_2:
+    // Calcular e2 = 2*err
+    add x11, x26, x26          // e2 = err * 2
+    
+    // Decisión si mover X
+    neg x12, x7                // -dy
+    cmp x11, x12               // -dy <= e2?
+    b.le check_dx_2
+    sub x26, x26, x7           // err -= dy
+    add x20, x20, x24          // x0 += sx
+    
+check_dx_2:
+    // Decisión si mover Y
+    cmp x11, x6                // dx >= e2
+    b.ge update_2
+    add x26, x26, x6           // err += dx
+    add x21, x21, x25          // y0 += sy
+    
+update_2:
+    b line_loop_2
+    
+line_end_2:
+    // Restaurar registros
+    ldp x29, x30, [sp], 16     // Restaurar LR
+    ldp x27, x28, [sp], 16
+    ldp x25, x26, [sp], 16
+    ldp x23, x24, [sp], 16
+    ldp x21, x22, [sp], 16
+    ldp x19, x20, [sp], 16
+    ret
 
 /* funcion para dibujar un triangulo
 
@@ -395,9 +505,30 @@ dibujar_triangulo:
     mov x24, x6     // p2.y
 
     // Funcion
+
     // get_array_p0_p1
+    mov x1, x19
+    mov x2, x20
+    mov x3, x21
+    mov x4, x22
+    ldr x5, =array_p0_p1
+    bl guardar_linea
+
     // get_array_p1_p2
+    mov x1, x21
+    mov x2, x22
+    mov x3, x23
+    mov x4, x24
+    ldr x5, =array_p1_p2
+    bl guardar_linea
+
     // get_array_p0_p2
+    mov x1, x19
+    mov x2, x20
+    mov x3, x23
+    mov x4, x24
+    ldr x5, =array_p0_p2
+    bl guardar_linea
 
     //
     // Concatenate the short sides
@@ -457,7 +588,7 @@ done_side_if:
     //
     // Draw the horizontal segments
     //
-    mov x3, x24        // p0.y
+    mov x3, x24        // p2.y
 loop_hor_seg_y:
     sub x6, x3, x24     // y - y0
     lsl x6, x6, 1       // (y - y0) * 2
@@ -467,8 +598,8 @@ loop_hor_seg_y:
     ldurh w7, [x7]      // x_left[y - y0]
 loop_hor_seg_x:
     mov x1, x6
-    // mov x2, x3
-    sub x2, x20, x3 // TODO
+    sub x2, x3, x24
+    sub x2, x20, x2
     bl pintar_pixel
 
     add x6, x6, 1

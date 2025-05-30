@@ -282,13 +282,38 @@ main:
 
     movz w10, 0xff, lsl 16
 
-    mov x1, 1
-    mov x2, 8
-    mov x3, 7
-    mov x4, 5
-    mov x5, 4
-    mov x6, 1
+    mov x1, 152
+    mov x2, 404
+    mov x3, 196
+    mov x4, 404
+    mov x5, 179
+    mov x6, 81
     bl dibujar_triangulo
+
+    mov x1, 196
+    mov x2, 404
+    mov x3, 215
+    mov x4, 97
+    mov x5, 179
+    mov x6, 81
+    bl dibujar_triangulo
+
+    mov x1, 393
+    mov x2, 211
+    mov x3, 407
+    mov x4, 184
+    mov x5, 215
+    mov x6, 97
+    bl dibujar_triangulo
+
+    mov x1, 393
+    mov x2, 211
+    mov x3, 212
+    mov x4, 140
+    mov x5, 215
+    mov x6, 97
+    bl dibujar_triangulo
+
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
