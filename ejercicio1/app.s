@@ -12,8 +12,8 @@ main:
  	mov x20, x0	// Guarda la dirección base del framebuffer en x20
 	//---------------- CODE HERE ------------------------------------
 
-    // COLOR_CIELO
-    movz w10, 0x2F, lsl 16 #2F59A1
+    // COLOR_CIELO #2F59A1
+    movz w10, 0x2F, lsl 16 
     movk w10, 0x59A1, lsl 00
 
     mov x1, 0
@@ -22,7 +22,7 @@ main:
     mov x4, 340
     bl dibujar_rectangulo_relleno
 
-    // COLOR_PASTO
+    // COLOR_PASTO #56703b
     movz w10, 0x56, lsl 16
     movk w10, 0x703b, lsl 00
 
@@ -58,8 +58,8 @@ main:
 
     bl dibujar_lineas_repetidasy
 
-    // COLOR_EDIFICIO_SOMBRA4 (la sombra del pilar que sobresale pero la de que mira para abajo)
-    movz w10, 0x60, lsl 16 #605E48
+    // COLOR_EDIFICIO_SOMBRA4  #605E48 (la sombra del pilar que sobresale pero la de que mira para abajo)
+    movz w10, 0x60, lsl 16
     movk w10, 0x5E48, lsl 00
 
     mov x1, 198
@@ -84,8 +84,8 @@ main:
     bl dibujar_lineas_repetidasy
 
 
-    // COLOR_EDIFICIO_SOMBRA3 (la sombra del pilar que sobresale)
-    movz w10, 0x86, lsl 16 #868A89
+    // COLOR_EDIFICIO_SOMBRA3 #868A89(la sombra del pilar que sobresale)
+    movz w10, 0x86, lsl 16
     movk w10, 0x8A89, lsl 00
 
     mov x1,169
@@ -132,8 +132,8 @@ main:
     mov x5, 5
     bl dibujar_lineas_repetidasx
 
-    //COLOR_EDIFICIO_SOMBRA5
-    movz w10, 0x75, lsl 16 #756d57
+    //COLOR_EDIFICIO_SOMBRA5 #756d57
+    movz w10, 0x75, lsl 16
     movk w10, 0x6d57, lsl 00    
 
     mov x1,347
@@ -150,9 +150,9 @@ main:
     mov x5, 8
     bl dibujar_lineas_repetidasy
 
-    // Ventanas cerradas en EDIFICIO_BASE2 (color de rejas 9caec8,segundo color de rejas #7a8393, color de la parte de abajo 4f565f)
+    // Ventanas cerradas en EDIFICIO_BASE2 #9CAEC8(color de rejas 9caec8,segundo color de rejas #7a8393, color de la parte de abajo 4f565f)
 
-    movz w10, 0x9C, lsl 16 #9CAEC8
+    movz w10, 0x9C, lsl 16
     movk w10, 0xAEC8, lsl 00
 
     mov x1, 83
@@ -162,7 +162,8 @@ main:
     mov x5, 28
     bl dibujar_lineas_intercaladasx
 
-    movz w10, 0x7A, lsl 16 #7A8393
+    // Color #7A8393
+    movz w10, 0x7A, lsl 16 
     movk w10, 0x8393, lsl 00
 
     mov x1, 82
