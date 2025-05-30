@@ -306,12 +306,12 @@ main:
     mov x6, 97
     bl dibujar_triangulo
 
-    mov x1, 393
-    mov x2, 211
+    mov x1, 215
+    mov x2, 97
     mov x3, 212
     mov x4, 140
-    mov x5, 215
-    mov x6, 97
+    mov x5, 393
+    mov x6, 211
     bl dibujar_triangulo
 
 

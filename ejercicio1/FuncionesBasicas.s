@@ -505,6 +505,47 @@ dibujar_triangulo:
     mov x24, x6     // p2.y
 
     // Funcion
+    cmp x22, x20
+if_y1_y0:
+    b.lt done_if_y1_y0
+
+    mov x1, x21
+    mov x2, x22
+
+    mov x21, x19 
+    mov x22, x20 
+
+    mov x19, x1
+    mov x20, x2
+done_if_y1_y0:
+
+    cmp x24, x20
+if_y2_y0:
+    b.lt done_if_y2_y0
+
+    mov x1, x23
+    mov x2, x24
+
+    mov x23, x19 
+    mov x24, x20 
+
+    mov x19, x1
+    mov x20, x2
+done_if_y2_y0:
+
+    cmp x24, x22
+if_y2_y1:
+    b.lt done_if_y2_y1
+
+    mov x1, x23
+    mov x2, x24
+
+    mov x23, x21 
+    mov x24, x22
+
+    mov x21, x1
+    mov x22, x2
+done_if_y2_y1:
 
     // get_array_p0_p1
     mov x1, x19
