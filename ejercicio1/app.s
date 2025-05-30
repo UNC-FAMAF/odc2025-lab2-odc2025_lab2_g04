@@ -13,7 +13,7 @@ main:
 	//---------------- CODE HERE ------------------------------------
 
     // COLOR_CIELO
-    movz w10, 0x2F, lsl 16
+    movz w10, 0x2F, lsl 16 #2F59A1
     movk w10, 0x59A1, lsl 00
 
     mov x1, 0
@@ -59,7 +59,7 @@ main:
     bl dibujar_lineas_repetidasy
 
     // COLOR_EDIFICIO_SOMBRA4 (la sombra del pilar que sobresale pero la de que mira para abajo)
-    movz w10, 0x60, lsl 16
+    movz w10, 0x60, lsl 16 #605E48
     movk w10, 0x5E48, lsl 00
 
     mov x1, 198
@@ -85,7 +85,7 @@ main:
 
 
     // COLOR_EDIFICIO_SOMBRA3 (la sombra del pilar que sobresale)
-    movz w10, 0x86, lsl 16
+    movz w10, 0x86, lsl 16 #868A89
     movk w10, 0x8A89, lsl 00
 
     mov x1,169
@@ -133,7 +133,7 @@ main:
     bl dibujar_lineas_repetidasx
 
     //COLOR_EDIFICIO_SOMBRA5
-    movz w10, 0x75, lsl 16
+    movz w10, 0x75, lsl 16 #756d57
     movk w10, 0x6d57, lsl 00    
 
     mov x1,347
@@ -152,7 +152,7 @@ main:
 
     // Ventanas cerradas en EDIFICIO_BASE2 (color de rejas 9caec8,segundo color de rejas #7a8393, color de la parte de abajo 4f565f)
 
-    movz w10, 0x9C, lsl 16
+    movz w10, 0x9C, lsl 16 #9CAEC8
     movk w10, 0xAEC8, lsl 00
 
     mov x1, 83
@@ -162,7 +162,7 @@ main:
     mov x5, 28
     bl dibujar_lineas_intercaladasx
 
-    movz w10, 0x7A, lsl 16
+    movz w10, 0x7A, lsl 16 #7A8393
     movk w10, 0x8393, lsl 00
 
     mov x1, 82
@@ -280,23 +280,30 @@ main:
 
     // NEW
 
+    movz w10, 0xff, lsl 0
+
+    mov x1, 73
+    mov x2, 164
+    mov x3, 273
+    mov x4, 142
+    mov x5, 262
+    mov x6, 407
+    mov x7, 50
+    mov x8, 389
+    bl dibujar_cuadrilatero
+
+
     movz w10, 0xff, lsl 16
 
-    mov x1, 152
-    mov x2, 404
-    mov x3, 196
-    mov x4, 404
-    mov x5, 179
-    mov x6, 81
-    bl dibujar_triangulo
-
-    mov x1, 196
-    mov x2, 404
+    mov x1, 179
+    mov x2, 81
     mov x3, 215
     mov x4, 97
-    mov x5, 179
-    mov x6, 81
-    bl dibujar_triangulo
+    mov x5, 196
+    mov x6, 412
+    mov x7, 151
+    mov x8, 414
+    bl dibujar_cuadrilatero
 
     mov x1, 393
     mov x2, 211
@@ -304,15 +311,39 @@ main:
     mov x4, 184
     mov x5, 215
     mov x6, 97
-    bl dibujar_triangulo
+    mov x7, 212
+    mov x8, 140
+    bl dibujar_cuadrilatero
 
-    mov x1, 215
-    mov x2, 97
-    mov x3, 212
-    mov x4, 140
-    mov x5, 393
-    mov x6, 211
-    bl dibujar_triangulo
+    mov x1, 273
+    mov x2, 164
+    mov x3, 288
+    mov x4, 170
+    mov x5, 278
+    mov x6, 406
+    mov x7, 262
+    mov x8, 407
+    bl dibujar_cuadrilatero
+
+    mov x1, 204
+    mov x2, 276
+    mov x3, 397
+    mov x4, 309
+    mov x5, 397
+    mov x6, 338
+    mov x7, 202
+    mov x8, 313
+    bl dibujar_cuadrilatero
+
+    mov x1, 342
+    mov x2, 191
+    mov x3, 352
+    mov x4, 195
+    mov x5, 348
+    mov x6, 398
+    mov x7, 337
+    mov x8, 399
+    bl dibujar_cuadrilatero
 
 
 	// Ejemplo de uso de gpios

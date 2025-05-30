@@ -335,7 +335,7 @@ dibujar_rectangulo_relleno:
     stp x21, x22, [sp, -16]!
     stp x23, x30, [sp, -16]!
 
-    // 2 Guardar parámetros
+    // Guardar parámetros
     mov x20, x1          // x_inicio
     mov x21, x2          // y_inicio
     mov x22, x3          // x_fin
@@ -490,7 +490,7 @@ x6 = p2.y
 */
 .globl dibujar_triangulo
 dibujar_triangulo:
-    // Preservar registros TODO
+    // Preservar registros
     stp x19, x20, [sp, -16]!
     stp x21, x22, [sp, -16]!
     stp x23, x24, [sp, -16]!
@@ -653,6 +653,59 @@ loop_hor_seg_x:
 
 done_triangulo:
     ldp x25, x30, [sp], 16
+    ldp x23, x24, [sp], 16
+    ldp x21, x22, [sp], 16
+    ldp x19, x20, [sp], 16
+    ret
+
+/* funcion para dibujar un cuadrilatero
+
+Parametros:
+
+x1 = p0.x
+x2 = p0.y
+x3 = p1.x
+x4 = p1.y
+x5 = p2.x
+x6 = p2.y
+x7 = p3.x
+x8 = p3.y
+*/
+.globl dibujar_cuadrilatero
+dibujar_cuadrilatero:
+    // Preservar registros TODO
+    stp x19, x20, [sp, -16]!
+    stp x21, x22, [sp, -16]!
+    stp x23, x24, [sp, -16]!
+    stp x25, x26, [sp, -16]!
+    stp x27, x28, [sp, -16]!
+    stp x29, x30, [sp, -16]!  // Guardar también LR (x30)
+
+    // Guardar parámetros
+    mov x20, x1                // x0
+    mov x21, x2                // y0
+    mov x22, x3                // x1
+    mov x23, x4                // y1
+    mov x24, x5                // x2
+    mov x25, x6                // y2
+    mov x26, x7                // x3
+    mov x27, x8                // y3
+
+    bl dibujar_triangulo
+
+    mov x1, x20
+    mov x2, x21
+    mov x3, x24
+    mov x4, x25
+    mov x5, x26
+    mov x6, x27
+    bl dibujar_triangulo
+
+done_cuadrilatero:
+    // Restaurar registros
+    ldp x29, x30, [sp], 16     // Restaurar LR
+    ldp x27, x28, [sp], 16
+    ldp x25, x26, [sp], 16
     ldp x23, x24, [sp], 16
     ldp x21, x22, [sp], 16
     ldp x19, x20, [sp], 16
