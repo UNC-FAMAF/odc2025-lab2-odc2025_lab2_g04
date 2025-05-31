@@ -46,7 +46,67 @@ main:
     mov x8, 403
     bl dibujar_cuadrilatero
 
-    // COLOR_EDIFICIO_BASE #314259
+    mov x1, 548
+    mov x2, 238
+    mov x3, 640
+    mov x4, 230
+    mov x5, 640
+    mov x6, 400
+    mov x7, 551
+    mov x8, 397
+    bl dibujar_cuadrilatero
+
+    mov x1, 538
+    mov x2, 177
+    mov x3, 548
+    mov x4, 238
+    mov x5, 551
+    mov x6, 401
+    mov x7, 543
+    mov x8, 409
+    bl dibujar_cuadrilatero
+
+    mov x1, 469
+    mov x2, 181
+    mov x3, 538
+    mov x4, 177
+    mov x5, 543
+    mov x6, 409
+    mov x7, 471
+    mov x8, 407
+    bl dibujar_cuadrilatero
+
+    mov x1, 394
+    mov x2, 185
+    mov x3, 394
+    mov x4, 191
+    mov x5, 539
+    mov x6, 182
+    mov x7, 538
+    mov x8, 177
+    bl dibujar_cuadrilatero
+
+    mov x1, 404
+    mov x2, 242
+    mov x3, 404
+    mov x4, 280
+    mov x5, 469
+    mov x6, 279
+    mov x7, 469
+    mov x8, 240
+    bl dibujar_cuadrilatero
+
+    mov x1, 395
+    mov x2, 213
+    mov x3, 404
+    mov x4, 212
+    mov x5, 401
+    mov x6, 397
+    mov x7, 392
+    mov x8, 397
+    bl dibujar_cuadrilatero
+
+    // COLOR_ventanas #314259
     movz w10, 0x31, lsl 16
     movk w10, 0x4259, lsl 00
 
@@ -80,9 +140,109 @@ main:
     mov x8, 334
     bl dibujar_cuadrilatero
 
+    mov x1, 548
+    mov x2, 260
+    mov x3, 640
+    mov x4, 254
+    mov x5, 640
+    mov x6, 283
+    mov x7, 549
+    mov x8, 288
+    bl dibujar_cuadrilatero
+
+    mov x1, 549
+    mov x2, 308
+    mov x3, 640
+    mov x4, 309
+    mov x5, 640
+    mov x6, 334
+    mov x7, 550
+    mov x8, 333
+    bl dibujar_cuadrilatero
+
+    mov x1, 550
+    mov x2, 357
+    mov x3, 640
+    mov x4, 357
+    mov x5, 640
+    mov x6, 383
+    mov x7, 551
+    mov x8, 382
+    bl dibujar_cuadrilatero
+
+    mov x1, 489
+    mov x2, 207
+    mov x3, 489
+    mov x4, 238
+    mov x5, 522
+    mov x6, 237
+    mov x7, 522
+    mov x8, 205
+    bl dibujar_cuadrilatero
+
+    mov x1, 489
+    mov x2, 276
+    mov x3, 489
+    mov x4, 309
+    mov x5, 523
+    mov x6, 309
+    mov x7, 523
+    mov x8, 276
+    bl dibujar_cuadrilatero
+   
+    mov x1, 489
+    mov x2, 348
+    mov x3, 489
+    mov x4, 383
+    mov x5, 524
+    mov x6, 383
+    mov x7, 524
+    mov x8, 348
+    bl dibujar_cuadrilatero
+
+    mov x1, 404
+    mov x2, 212
+    mov x3, 404
+    mov x4, 242
+    mov x5, 468
+    mov x6, 240
+    mov x7, 468
+    mov x8, 208
+    bl dibujar_cuadrilatero
+
+    mov x1, 404
+    mov x2, 280
+    mov x3, 404
+    mov x4, 309
+    mov x5, 469
+    mov x6, 309
+    mov x7, 469
+    mov x8, 280
+    bl dibujar_cuadrilatero
+    
+    mov x1, 443
+    mov x2, 343
+    mov x3, 469
+    mov x4, 343
+    mov x5, 470
+    mov x6, 397
+    mov x7, 444
+    mov x8, 396
+    bl dibujar_cuadrilatero
+
     // COLOR_EDIFICIO_BASE2 #8b8d81
     movz w10, 0x8b, lsl 16
     movk w10, 0x8d81, lsl 00
+
+    mov x1, 586
+    mov x2, 235
+    mov x3, 592
+    mov x4, 234
+    mov x5, 596
+    mov x6, 399
+    mov x7, 591
+    mov x8, 398
+    bl dibujar_cuadrilatero
 
     mov x1, 73
     mov x2, 164
@@ -92,6 +252,21 @@ main:
     mov x6, 407
     mov x7, 50
     mov x8, 389
+    bl dibujar_cuadrilatero
+
+    
+    // COLOR_CARTEL #7d8288
+    movz w10, 0x7d, lsl 16
+    movk w10, 0x8288, lsl 00
+
+    mov x1, 397
+    mov x2, 310
+    mov x3, 397
+    mov x4, 338
+    mov x5, 469
+    mov x6, 338
+    mov x7, 469
+    mov x8, 310
     bl dibujar_cuadrilatero
     
     // COLOR_EDIFICIO_SOMBRA4  #605E48 (la sombra del pilar que sobresale pero la de que mira para abajo)
