@@ -253,6 +253,76 @@ main:
     mov x8, 397
     bl dibujar_cuadrilatero
 
+    mov x1, 294
+    mov x2, 180
+    mov x3, 300
+    mov x4, 182
+    mov x5, 296
+    mov x6, 291
+    mov x7, 290
+    mov x8, 290
+    bl dibujar_cuadrilatero
+
+    mov x1, 307
+    mov x2, 185
+    mov x3, 313
+    mov x4, 187
+    mov x5, 309
+    mov x6, 293
+    mov x7, 304
+    mov x8, 292
+    bl dibujar_cuadrilatero
+
+    mov x1, 320
+    mov x2, 190
+    mov x3, 326
+    mov x4, 192
+    mov x5, 322
+    mov x6, 295
+    mov x7, 317
+    mov x8, 294
+    bl dibujar_cuadrilatero
+
+    mov x1, 357
+    mov x2, 203
+    mov x3, 361
+    mov x4, 204
+    mov x5, 358
+    mov x6, 301
+    mov x7, 354
+    mov x8, 300
+    bl dibujar_cuadrilatero
+
+    mov x1, 357
+    mov x2, 203
+    mov x3, 361
+    mov x4, 204
+    mov x5, 358
+    mov x6, 301
+    mov x7, 354
+    mov x8, 300
+    bl dibujar_cuadrilatero
+
+    mov x1, 365
+    mov x2, 302
+    mov x3, 369
+    mov x4, 303
+    mov x5, 372
+    mov x6, 208
+    mov x7, 367
+    mov x8, 206
+    bl dibujar_cuadrilatero
+
+    mov x1, 377
+    mov x2, 210
+    mov x3, 382
+    mov x4, 212
+    mov x5, 379
+    mov x6, 305
+    mov x7, 375
+    mov x8, 304
+    bl dibujar_cuadrilatero
+
     // COLOR_EDIFICIO_BASE2 #a8a7a0
     movz w10, 0xa8, lsl 16
     movk w10, 0xa7a0, lsl 00
@@ -592,6 +662,40 @@ main:
     mov x6, 279
     mov x7, 469
     mov x8, 240
+    bl dibujar_cuadrilatero
+
+     // COLOR_EDIFICIO_BASE #CFCFCE
+    movz w10, 0xCF, lsl 16
+    movk w10, 0xCFCE, lsl 00
+
+    mov x1, 418
+    mov x2, 213
+    mov x3, 421
+    mov x4, 212
+    mov x5, 420
+    mov x6, 309
+    mov x7, 417
+    mov x8, 309
+    bl dibujar_cuadrilatero
+
+    mov x1, 434
+    mov x2, 212
+    mov x3, 437
+    mov x4, 211
+    mov x5, 437
+    mov x6, 309
+    mov x7, 434
+    mov x8, 309
+    bl dibujar_cuadrilatero
+
+    mov x1, 451
+    mov x2, 210
+    mov x3, 454
+    mov x4, 210
+    mov x5, 454
+    mov x6, 309
+    mov x7, 451
+    mov x8, 309
     bl dibujar_cuadrilatero
 
     // COLOR_EDIFICIO_SOMBRA4  #5d5f5e (la sombra del pilar que sobresale pero la de que mira para abajo)
