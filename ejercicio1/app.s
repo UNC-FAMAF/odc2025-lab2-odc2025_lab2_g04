@@ -50,10 +50,59 @@ main:
     movz w10, 0x60, lsl 16
     movk w10, 0x5E48, lsl 00
 
+    mov x1, 212
+    mov x2, 140
+    mov x3, 212
+    mov x4, 147
+    mov x5, 386
+    mov x6, 213
+    mov x7, 395
+    mov x8, 213
+    bl dibujar_cuadrilatero
 
     // COLOR_EDIFICIO_SOMBRA3 #868A89(la sombra del pilar que sobresale)
     movz w10, 0x86, lsl 16
     movk w10, 0x8A89, lsl 00
+
+    mov x1, 179
+    mov x2, 81
+    mov x3, 169
+    mov x4, 84
+    mov x5, 142
+    mov x6, 412
+    mov x7, 151
+    mov x8, 414
+    bl dibujar_cuadrilatero
+
+    mov x1, 274
+    mov x2, 164
+    mov x3, 263
+    mov x4, 166
+    mov x5, 251
+    mov x6, 406
+    mov x7, 262
+    mov x8, 407
+    bl dibujar_cuadrilatero
+
+    mov x1, 342
+    mov x2, 191
+    mov x3, 336
+    mov x4, 194
+    mov x5, 330
+    mov x6, 399
+    mov x7, 337
+    mov x8, 399
+    bl dibujar_cuadrilatero
+
+    mov x1, 395
+    mov x2, 213
+    mov x3, 390
+    mov x4, 213
+    mov x5, 387
+    mov x6, 397
+    mov x7, 392
+    mov x8, 397
+    bl dibujar_cuadrilatero
 
     //COLOR_EDIFICIO_SOMBRA5 #756d57
     movz w10, 0x75, lsl 16
@@ -63,6 +112,66 @@ main:
 
     movz w10, 0x9C, lsl 16
     movk w10, 0xAEC8, lsl 00
+
+    mov x1, 85
+    mov x2, 185
+    mov x3, 109
+    mov x4, 183
+    mov x5, 106
+    mov x6, 215
+    mov x7, 82
+    mov x8, 216
+    bl dibujar_cuadrilatero
+
+    mov x1, 121
+    mov x2, 181
+    mov x3, 147
+    mov x4, 179
+    mov x5, 145
+    mov x6, 214
+    mov x7, 118
+    mov x8, 215
+    bl dibujar_cuadrilatero
+
+    mov x1, 77
+    mov x2, 255
+    mov x3, 102
+    mov x4, 255
+    mov x5, 99
+    mov x6, 289
+    mov x7, 74
+    mov x8, 289
+    bl dibujar_cuadrilatero
+
+    mov x1, 115
+    mov x2, 254
+    mov x3, 140
+    mov x4, 254
+    mov x5, 137
+    mov x6, 289
+    mov x7, 112
+    mov x8, 289
+    bl dibujar_cuadrilatero
+
+    mov x1, 210
+    mov x2, 174
+    mov x3, 231
+    mov x4, 172
+    mov x5, 229
+    mov x6, 208
+    mov x7, 208
+    mov x8, 209
+    bl dibujar_cuadrilatero
+
+    mov x1, 205
+    mov x2, 251
+    mov x3, 226
+    mov x4, 251
+    mov x5, 225
+    mov x6, 279
+    mov x7, 204
+    mov x8, 275
+    bl dibujar_cuadrilatero
 
     // COLOR_EDIFICIO_BASE #CFCFCE
     movz w10, 0xCF, lsl 16
