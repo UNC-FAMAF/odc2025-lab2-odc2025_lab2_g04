@@ -32,6 +32,54 @@ main:
     mov x4, 480
     bl dibujar_rectangulo_relleno
 
+    // COLOR_EDIFICIO_BASE #CFCFCE
+    movz w10, 0xCF, lsl 16
+    movk w10, 0xCFCE, lsl 00
+
+    mov x1, 288
+    mov x2, 177
+    mov x3, 390
+    mov x4, 213
+    mov x5, 387
+    mov x6, 397
+    mov x7, 278
+    mov x8, 403
+    bl dibujar_cuadrilatero
+
+    // COLOR_EDIFICIO_BASE #314259
+    movz w10, 0x31, lsl 16
+    movk w10, 0x4259, lsl 00
+
+    mov x1, 288
+    mov x2, 177
+    mov x3, 390
+    mov x4, 213
+    mov x5, 390
+    mov x6, 240
+    mov x7, 287
+    mov x8, 209
+    bl dibujar_cuadrilatero
+
+    mov x1, 284
+    mov x2, 254
+    mov x3, 389
+    mov x4, 279
+    mov x5, 388
+    mov x6, 307
+    mov x7, 283
+    mov x8, 289
+    bl dibujar_cuadrilatero
+
+    mov x1, 279
+    mov x2, 378
+    mov x3, 431
+    mov x4, 381
+    mov x5, 431
+    mov x6, 352
+    mov x7, 281
+    mov x8, 334
+    bl dibujar_cuadrilatero
+
     // COLOR_EDIFICIO_BASE2 #8b8d81
     movz w10, 0x8b, lsl 16
     movk w10, 0x8d81, lsl 00
@@ -226,7 +274,7 @@ main:
     mov x7, 337
     mov x8, 399
     bl dibujar_cuadrilatero
-    
+
     // COLOR #605E48
     movz w10, 0x60, lsl 16
     movk w10, 0x5E48, lsl 00
