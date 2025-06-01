@@ -723,6 +723,65 @@ main:
     mov x8, 183
     bl dibujar_cuadrilatero
 
+    // DIBUJAR ARBOLES
+
+    // Dibujar Sombras
+    
+
+    // Dibujar Troncos
+    // COLOR_TRONCO #51291E
+    movz w10, 0x51, lsl 16
+    movk w10, 0x291E, lsl 00
+
+    mov x1, 271
+    mov x2, 361
+    mov x3, 267
+    mov x4, 432
+    mov x5, 273
+    mov x6, 431
+    bl dibujar_triangulo
+
+    mov x1, 271
+    mov x2, 334
+    mov x3, 271
+    mov x4, 401
+    mov x5, 278
+    mov x6, 337
+    bl dibujar_triangulo
+
+    mov x1, 277
+    mov x2, 361
+    mov x3, 275
+    mov x4, 369
+    mov x5, 300
+    mov x6, 331
+    bl dibujar_triangulo
+
+    mov x1, 243
+    mov x2, 329
+    mov x3, 270
+    mov x4, 348
+    mov x5, 271
+    mov x6, 345
+    bl dibujar_triangulo
+
+    mov x1, 271
+    mov x2, 361
+    mov x3, 267
+    mov x4, 432
+    mov x5, 273
+    mov x6, 431
+    bl dibujar_triangulo
+
+    mov x1, 271
+    mov x2, 334
+    mov x3, 271
+    mov x4, 401
+    mov x5, 278
+    mov x6, 337
+    bl dibujar_triangulo
+
+
     // COLOR #605E48
     movz w10, 0x60, lsl 16
     movk w10, 0x5E48, lsl 00
