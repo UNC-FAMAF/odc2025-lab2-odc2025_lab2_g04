@@ -91,6 +91,20 @@ main:
     mov x8, 343
     bl dibujar_cuadrilatero
 
+<<<<<<< Updated upstream
+=======
+    mov x1, 612
+    mov x2, 182
+    mov x3, 614
+    mov x4, 232
+    mov x5, 640
+    mov x6, 230
+    mov x7, 640
+    mov x8, 180
+    bl dibujar_cuadrilatero
+
+
+>>>>>>> Stashed changes
     // COLOR_EDIFICIO_SOMBRA3 #a8a7ac(la sombra del pilar que sobresale)
     movz w10, 0xa8, lsl 16
     movk w10, 0xa7ac, lsl 00
