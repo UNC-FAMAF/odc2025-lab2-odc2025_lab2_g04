@@ -12,6 +12,8 @@ main:
  	mov x20, x0	// Guarda la dirección base del framebuffer en x20
 	//---------------- CODE HERE ------------------------------------
 
+    // =========== COlORES BACKGROUND ============
+
     // COLOR_CIELO #2F59A1
     movz w10, 0x2F, lsl 16 
     movk w10, 0x59A1, lsl 00
@@ -61,6 +63,10 @@ main:
     // =========== FAMAF =======================
 
     bl dibujar_famaf
+
+    // =========== LETRAS =======================
+
+    bl dibujar_letras
 
     // ============= DIBUJAR ARBOLES ================
 

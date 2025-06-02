@@ -1,9 +1,4 @@
 .data
-    array_p0_p1: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
-    array_p1_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
-    array_p0_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
-    array_p0_p1_p2: .space 1280  // Reserva 640 * 2 = 1280 bytes para el arreglo
-
 .section .text
 
 .equ SCREEN_WIDTH, 640
