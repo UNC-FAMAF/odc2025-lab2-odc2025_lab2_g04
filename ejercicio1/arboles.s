@@ -87,13 +87,63 @@ dibujar_arboles:
     mov x6, 345
     bl dibujar_triangulo
 
-    // Hojas
+    // Hojas arbol 1
 
     // COLOR_VERDE_OSCURO #344323
     movz w10, 0x34, lsl 16
     movk w10, 0x4323, lsl 00
 
+    mov x1, 244
+    mov x2, 327
+    mov x3, 38
+    mov x4, 23
+    bl dibujar_elipse
     
+    mov x1, 276
+    mov x2, 331
+    mov x3, 20
+    mov x4, 22
+    bl dibujar_elipse
+
+    mov x1, 209
+    mov x2, 337
+    mov x3, 23
+    mov x4, 21
+    bl dibujar_elipse
+
+    // COLOR_VERDE #56703b
+    movz w10, 0x56, lsl 16
+    movk w10, 0x703b, lsl 00
+
+    mov x1, 251
+    mov x2, 299
+    mov x3, 19
+    mov x4, 15
+    bl dibujar_elipse
+
+    mov x1, 267
+    mov x2, 315
+    mov x3, 25
+    mov x4, 19
+    bl dibujar_elipse
+
+    mov x1, 295
+    mov x2, 331
+    mov x3, 15
+    mov x4, 13
+    bl dibujar_elipse
+    
+    mov x1, 230
+    mov x2, 303
+    mov x3, 19
+    mov x4, 13
+    bl dibujar_elipse
+
+    mov x1, 208
+    mov x2, 318
+    mov x3, 19
+    mov x4, 14
+    bl dibujar_elipse
 
     // =========== Arbol 2 ===========
 
@@ -119,7 +169,7 @@ dibujar_arboles:
     mov x6, 337
     bl dibujar_triangulo
 
-    // Hojas
+    // Hojas arbol 2
 
     // COLOR_VERDE_OSCURO #344323
     movz w10, 0x34, lsl 16
@@ -193,6 +243,36 @@ dibujar_arboles:
     mov x2, 335
     mov x3, 14
     mov x4, 12
+    bl dibujar_elipse
+
+    // ============= Ramas ===============
+
+    // Hojas
+
+    // COLOR_VERDE_OSCURO #344323
+    movz w10, 0x34, lsl 16
+    movk w10, 0x4323, lsl 00
+
+    mov x1, 625
+    mov x2, 333
+    mov x3, 49
+    mov x4, 38
+    bl dibujar_elipse
+
+    // COLOR_VERDE #56703b
+    movz w10, 0x56, lsl 16
+    movk w10, 0x703b, lsl 00
+
+    mov x1, 606
+    mov x2, 298
+    mov x3, 34
+    mov x4, 24
+    bl dibujar_elipse
+
+    mov x1, 573
+    mov x2, 286
+    mov x3, 34
+    mov x4, 24
     bl dibujar_elipse
 
 
