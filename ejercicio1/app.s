@@ -24,7 +24,7 @@ main:
     mov x4, 340
     bl dibujar_rectangulo_relleno
 
-    // COLOR_PASTO #56703b
+    // COLOR_VERDE #56703b
     movz w10, 0x56, lsl 16
     movk w10, 0x703b, lsl 00
 
@@ -36,29 +36,7 @@ main:
 
     // =========== Arboles de Fondo ============
 
-    // COLOR_TRONCO #51291E
-    movz w10, 0x51, lsl 16
-    movk w10, 0x291E, lsl 00
-
-    // Tronco Fondo 1
-    mov x1, 25
-    mov x2, 376
-    mov x3, 24
-    mov x4, 300
-    mov x5, 30
-    mov x6, 376
-    bl dibujar_triangulo
-
-    // COLOR_VERDE_OSCURO #344323
-    movz w10, 0x34, lsl 16
-    movk w10, 0x4323, lsl 00
-    
-    // Hojas Fondo 1
-    mov x1, 28
-    mov x2, 300
-    mov x3, 61
-    mov x4, 70
-    bl dibujar_elipse
+    bl dibujar_arbol_0
 
     // =========== FAMAF =======================
 

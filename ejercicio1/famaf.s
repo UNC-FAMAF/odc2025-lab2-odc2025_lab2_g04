@@ -570,30 +570,6 @@ dibujar_famaf:
     mov x8, 310
     bl dibujar_cuadrilatero
 
-    // COLOR_EDIFICIO_SOMBRA4  #5d5f5e (la sombra del pilar que sobresale pero la de que mira para abajo)
-    movz w10, 0x5d, lsl 16
-    movk w10, 0x5f5e, lsl 00
-
-    mov x1, 402
-    mov x2, 339
-    mov x3, 432
-    mov x4, 342
-    mov x5, 469
-    mov x6, 342
-    mov x7, 469
-    mov x8, 339
-    bl dibujar_cuadrilatero
-
-    mov x1, 389
-    mov x2, 192
-    mov x3, 395
-    mov x4, 213
-    mov x5, 539
-    mov x6, 204
-    mov x7, 546
-    mov x8, 183
-    bl dibujar_cuadrilatero    
-    
     // COLOR_EDIFICIO_BASE #CFCFCE
     movz w10, 0xCF, lsl 16
     movk w10, 0xCFCE, lsl 00
@@ -638,6 +614,30 @@ dibujar_famaf:
     mov x8, 309
     bl dibujar_cuadrilatero
 
+    // COLOR_EDIFICIO_SOMBRA4  #5d5f5e (la sombra del pilar que sobresale pero la de que mira para abajo)
+    movz w10, 0x5d, lsl 16
+    movk w10, 0x5f5e, lsl 00
+
+    mov x1, 402
+    mov x2, 339
+    mov x3, 432
+    mov x4, 342
+    mov x5, 469
+    mov x6, 342
+    mov x7, 469
+    mov x8, 339
+    bl dibujar_cuadrilatero
+
+    mov x1, 389
+    mov x2, 192
+    mov x3, 395
+    mov x4, 213
+    mov x5, 539
+    mov x6, 204
+    mov x7, 546
+    mov x8, 183
+    bl dibujar_cuadrilatero  
+
 // =========== LADO 4 ============
 
     // COLOR_EDIFICIO_SOMBRA3 #a8a7ac(la sombra del pilar que sobresale)
@@ -646,9 +646,9 @@ dibujar_famaf:
 
     mov x1, 548
     mov x2, 238
-    mov x3, 640
+    mov x3, 639
     mov x4, 230
-    mov x5, 640
+    mov x5, 639
     mov x6, 400
     mov x7, 551
     mov x8, 397
@@ -662,9 +662,9 @@ dibujar_famaf:
     mov x2, 182
     mov x3, 614
     mov x4, 232
-    mov x5, 640
+    mov x5, 639
     mov x6, 230
-    mov x7, 640
+    mov x7, 639
     mov x8, 180
     bl dibujar_cuadrilatero
 
@@ -674,9 +674,9 @@ dibujar_famaf:
 
     mov x1, 548
     mov x2, 260
-    mov x3, 640
+    mov x3, 639
     mov x4, 254
-    mov x5, 640
+    mov x5, 639
     mov x6, 283
     mov x7, 549
     mov x8, 288
@@ -684,9 +684,9 @@ dibujar_famaf:
 
     mov x1, 549
     mov x2, 308
-    mov x3, 640
+    mov x3, 639
     mov x4, 309
-    mov x5, 640
+    mov x5, 639
     mov x6, 334
     mov x7, 550
     mov x8, 333
@@ -694,9 +694,9 @@ dibujar_famaf:
 
     mov x1, 550
     mov x2, 357
-    mov x3, 640
+    mov x3, 639
     mov x4, 357
-    mov x5, 640
+    mov x5, 639
     mov x6, 383
     mov x7, 551
     mov x8, 382
