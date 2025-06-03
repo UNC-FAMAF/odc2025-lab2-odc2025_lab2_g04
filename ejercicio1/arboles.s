@@ -87,13 +87,92 @@ dibujar_arboles:
     mov x6, 345
     bl dibujar_triangulo
 
-    // Hojas
+    // Hojas arbol 1
 
     // COLOR_VERDE_OSCURO #344323
     movz w10, 0x34, lsl 16
     movk w10, 0x4323, lsl 00
 
+    mov x1, 260
+    mov x2, 324
+    mov x3, 54
+    mov x4, 48
+    bl dibujar_elipse
     
+    mov x1, 216
+    mov x2, 342
+    mov x3, 35
+    mov x4, 24
+    bl dibujar_elipse
+
+    // COLOR_VERDE #56703b
+    movz w10, 0x56, lsl 16
+    movk w10, 0x703b, lsl 00
+
+    // dibujados de izquierda a derecha
+    mov x1, 215
+    mov x2, 306
+    mov x3, 29
+    mov x4, 20
+    bl dibujar_elipse
+
+    mov x1, 232
+    mov x2, 285
+    mov x3, 17
+    mov x4, 18
+    bl dibujar_elipse
+
+    mov x1, 260
+    mov x2, 273
+    mov x3, 21
+    mov x4, 19
+    bl dibujar_elipse
+    
+    mov x1, 289
+    mov x2, 291
+    mov x3, 20
+    mov x4, 19
+    bl dibujar_elipse
+
+    mov x1, 306
+    mov x2, 321
+    mov x3, 19
+    mov x4, 19
+    bl dibujar_elipse
+
+    mov x1, 307
+    mov x2, 355
+    mov x3, 23
+    mov x4, 21
+    bl dibujar_elipse
+
+    // Elipse centro derecha
+    mov x1, 254
+    mov x2, 322
+    mov x3, 31
+    mov x4, 14
+    bl dibujar_elipse
+
+    // Elipse centro izquierda
+    mov x1, 232
+    mov x2, 335
+    mov x3, 14
+    mov x4, 12
+    bl dibujar_elipse
+
+    // elipse abajo derecha
+    mov x1, 265
+    mov x2, 352
+    mov x3, 13
+    mov x4, 12
+    bl dibujar_elipse
+
+    // Elipse abajo izquierda
+    mov x1, 200
+    mov x2, 350
+    mov x3, 13
+    mov x4, 12
+    bl dibujar_elipse
 
     // =========== Arbol 2 ===========
 
@@ -119,7 +198,7 @@ dibujar_arboles:
     mov x6, 337
     bl dibujar_triangulo
 
-    // Hojas
+    // Hojas arbol 2
 
     // COLOR_VERDE_OSCURO #344323
     movz w10, 0x34, lsl 16
@@ -194,6 +273,32 @@ dibujar_arboles:
     mov x3, 14
     mov x4, 12
     bl dibujar_elipse
+
+    // ============= Ramas ===============
+
+    // Rama
+
+    // COLOR_TRONCO #51291E
+    movz w10, 0x51, lsl 16
+    movk w10, 0x291E, lsl 00
+
+    mov x1, 639
+    mov x2, 370
+    mov x3, 569
+    mov x4, 347
+    mov x5, 639
+    mov x6, 367
+    bl dibujar_triangulo
+
+    mov x1, 592
+    mov x2, 354
+    mov x3, 549
+    mov x4, 364
+    mov x5, 595
+    mov x6, 356
+    bl dibujar_triangulo
+
+    // Hojas
 
 
 done_dibujar_arboles:
