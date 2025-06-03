@@ -34,6 +34,8 @@ main:
     mov x4, 480
     bl dibujar_rectangulo_relleno
 
+    bl dibujar_nube
+
     // =========== Arboles de Fondo ============
 
     bl dibujar_arbol_0
