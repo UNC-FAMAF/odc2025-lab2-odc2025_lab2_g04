@@ -166,4 +166,3 @@ dibujar_pasto_noche:
     bl dibujar_rectangulo_relleno
     ldp x19, x30, [sp], 16
     ret    
-

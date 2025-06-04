@@ -34,8 +34,12 @@ total_loop:
     mov x17, 100
     bl dibujar_cielo
     bl dibujar_pasto
+    bl dibujar_arbol_0
     bl dibujar_famaf
     bl dibujar_letras
+    bl dibujar_nube
+
+    bl dibujar_arboles
 
 loop0:
     
@@ -49,6 +53,7 @@ loop0:
     bl dibujar_elipse
 
 
+
     movz w10, 0xff, lsl 16 
     movk w10, 0xdf22, lsl 00
 
@@ -57,6 +62,7 @@ loop0:
     mov x3, 30
     mov x4, 30
     bl dibujar_elipse
+
 
     bl delay
     add x16,x16,3
@@ -83,6 +89,7 @@ loop1:
     bl dibujar_elipse
 
 
+
     movz w10, 0xff, lsl 16 
     movk w10, 0xdf22, lsl 00
 
@@ -92,6 +99,7 @@ loop1:
     mov x4, 30
     bl dibujar_elipse
 
+    bl dibujar_nube
     bl delay
     
 
@@ -106,7 +114,11 @@ loop1:
     mov x17, 100
     bl dibujar_cielo_noche
     bl dibujar_pasto_noche
+    bl dibujar_arbol_0_noche
     bl dibujar_famaf_noche
+
+    bl dibujar_arboles_noche
+
 
 loopnoche1:
 
@@ -119,6 +131,7 @@ loopnoche1:
     bl dibujar_elipse
 
     bl dibujar_estrellas
+    bl dibujar_nube_noche
 
     movz w10, 0xFF, lsl 16 
     movk w10, 0xFFFF, lsl 00
@@ -156,6 +169,7 @@ loopnoche2:
     bl dibujar_elipse
 
     bl dibujar_estrellas
+    bl dibujar_nube_noche
 
     movz w10, 0xFF, lsl 16 
     movk w10, 0xFFFF, lsl 00
