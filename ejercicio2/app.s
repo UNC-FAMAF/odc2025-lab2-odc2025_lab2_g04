@@ -13,8 +13,8 @@ delay:
     // Inicialización del contador y registro tope
     MOV X13,#0                                      
 
-    MOVZ X14,#0x00,LSL #16                           
-    MOVK X14,#0xf000,LSL #0                         
+    MOVZ X14,#0x0f,LSL #16                           
+    MOVK X14,#0x0000,LSL #0                         
     LSL X14,X14,5                                   
     // Bucle de delay
     mantener_delay:
@@ -170,8 +170,7 @@ loopnoche2:
     bl dibujar_elipse
 
     bl dibujar_estrellas
-    bl dibujar_nube_noche
-
+    
     movz w10, 0xFF, lsl 16 
     movk w10, 0xFFFF, lsl 00
 
@@ -181,6 +180,7 @@ loopnoche2:
     mov x4, 30
     bl dibujar_elipse
 
+    bl dibujar_nube_noche
     bl delay
     
     add x16,x16,3

@@ -648,9 +648,9 @@ dibujar_famaf:
 
     mov x1, 548
     mov x2, 238
-    mov x3, 640
+    mov x3, 639
     mov x4, 230
-    mov x5, 640
+    mov x5, 639
     mov x6, 400
     mov x7, 551
     mov x8, 397
@@ -664,9 +664,9 @@ dibujar_famaf:
     mov x2, 182
     mov x3, 614
     mov x4, 232
-    mov x5, 640
+    mov x5, 639
     mov x6, 230
-    mov x7, 640
+    mov x7, 639
     mov x8, 180
     bl dibujar_cuadrilatero
 
@@ -676,9 +676,9 @@ dibujar_famaf:
 
     mov x1, 548
     mov x2, 260
-    mov x3, 640
+    mov x3, 639
     mov x4, 254
-    mov x5, 640
+    mov x5, 639
     mov x6, 283
     mov x7, 549
     mov x8, 288
@@ -686,9 +686,9 @@ dibujar_famaf:
 
     mov x1, 549
     mov x2, 308
-    mov x3, 640
+    mov x3, 639
     mov x4, 309
-    mov x5, 640
+    mov x5, 639
     mov x6, 334
     mov x7, 550
     mov x8, 333
@@ -696,9 +696,9 @@ dibujar_famaf:
 
     mov x1, 550
     mov x2, 357
-    mov x3, 640
+    mov x3, 639
     mov x4, 357
-    mov x5, 640
+    mov x5, 639
     mov x6, 383
     mov x7, 551
     mov x8, 382
