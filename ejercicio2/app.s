@@ -115,8 +115,9 @@ loop1:
     bl dibujar_cielo_noche
     bl dibujar_pasto_noche
     bl dibujar_arbol_0_noche
-    bl dibujar_famaf_noche
 
+    bl dibujar_famaf_noche
+    bl dibujar_letras_noche
     bl dibujar_arboles_noche
 
 
