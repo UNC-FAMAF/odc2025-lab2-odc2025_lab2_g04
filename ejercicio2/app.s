@@ -8,25 +8,25 @@
 
 
 
-.globl delay                                        // ¡Pseudocódigo para entender cómo van trabajando las instrucciones!
+.globl delay                                        
 delay:
     // Inicialización del contador y registro tope
     MOV X13,#0                                      
 
-    MOVZ X14,#0x0f,LSL #16                           
-    MOVK X14,#0x0000,LSL #0                         
+    MOVZ X14,#0x0f,LSL #16                           // MODIFICAR ESTOS VALORES PARA MODIFICAR
+    MOVK X14,#0x0000,LSL #0                          // EL TIEMPO DE CADA FRAME
     LSL X14,X14,5                                   
     // Bucle de delay
     mantener_delay:
-        CMP X13,X14                                // Comparar X16 (contador) con X17 (tope)
-        B.EQ finalizar_delay                       // Si X16 = X17, el delay finaliza
-        ADD X13, X13, #1                           // Si X16 != X17, incrementa X16 en 1
+        CMP X13,X14                                // Comparar X13 (contador) con X14 (tope)
+        B.EQ finalizar_delay                       // Si X13 = X14, el delay finaliza
+        ADD X13, X13, #1                           // Si X13 != X14, incrementa X13 en 1
         B mantener_delay                           // Salta de nuevo a mantener_delay para continuar el bucle
 
     finalizar_delay:
 RET
 
-// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
 .globl main
 main:
 total_loop:
