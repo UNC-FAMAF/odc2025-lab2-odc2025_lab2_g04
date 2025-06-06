@@ -186,6 +186,7 @@ loopnoche2:
     add x16,x16,3
     add x17,x17,1
     mov x5, SCREEN_WIDTH
+    sub x5, x5, 30
     cmp x16, x5
     b.lt loopnoche2
 
