@@ -9,25 +9,6 @@
 .equ SCREEN_WIDTH, 640
 .equ SCREEN_HEIGH, 480
 
-.globl delay_1s
-delay_1s:
-    sub sp, sp, #16         // reservar espacio en la pila para struct timespec
-
-    mov x22, sp              // x0 = puntero a timespec (argumento 1)
-    mov x23, 0               // x1 = NULL (no queremos tiempo restante)
-
-    mov x24, 1               // tv_sec = 1
-    str x24, [sp]            // guardar en offset 0
-
-    mov x25, 0               // tv_nsec = 0
-    str x25, [sp, #8]        // guardar en offset 8
-
-    mov x26, 35              // syscall número 35 = nanosleep
-    svc #0                  // llamada al sistema
-
-    add sp, sp, #16         // liberar espacio
-    ret
-
 /* Funcion para Dibujar un pixel*/
 .globl pintar_pixel 
 pintar_pixel:
